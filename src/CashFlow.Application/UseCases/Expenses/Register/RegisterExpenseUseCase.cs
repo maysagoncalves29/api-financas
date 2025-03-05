@@ -1,4 +1,5 @@
-﻿using CashFlow.Communication.Request;
+﻿using CashFlow.Communication.Enum;
+using CashFlow.Communication.Request;
 using CashFlow.Communication.Response;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,12 @@ public class RegisterExpenseUseCase
 {
     public ResponseRegisteredExpanseJson Execute(RequestExpanseRegisterJson request)
     {
+        Validate(request);
         return new ResponseRegisteredExpanseJson();
+    }
+    private void Validate(RequestExpanseRegisterJson request)
+    {
+        var validator = new RegisterExpenseValidator();
+        var result = validator.Validate(request);
     }
 }
